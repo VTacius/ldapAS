@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Espacio de logueo">
+    <meta name="author" content="Alexander Ortíz">
+    <title>Inicio de Sesión</title>
+    <link href="/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/signin.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+      <form class="form-signin" role="form" id="login" method="POST" action="{{ path('grupo_agregar') }}">
+        <h2 class="form-signin-heading">Directorio MINSAL</h2>
+        <input name="_username" id="username" type="text" class="form-control" placeholder="Usuario" required autofocus>
+        <input name="_password" id="password" type="password" class="form-control" placeholder="Contraseña" required>
+{#        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">#}
+        <button id="enviar" class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+{#        {% if mensaje %}
+          <center><label id="mensaje" class="checkbox"><b> {{ mensaje }} </b></label></center>
+        {% endif %}#}
+{{error}}
+{{user}}
+      </form>
+
+    </div>
+
+  </body>
+</html>

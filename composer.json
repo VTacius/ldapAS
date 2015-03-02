@@ -1,0 +1,21 @@
+{
+    "name": "vtacius/ldapas",
+    "description": "Proveedor de Autenticación para Silex sobre LDAP",
+    "license": "MIT",
+    "keywords": ["LDAP", "Silex"],
+    "require": {
+	"doctrine/dbal": "~2.5",
+        "symfony/yaml": "~2.5.5",
+	"vtacius/ldappm": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "VTacius\\ldapAS\\": "src/" }
+    },
+    "authors": [
+        {
+            "name": "Alexander Ortiz",
+            "email": "vtacius@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
