@@ -3,7 +3,7 @@
  * @name ldapUser
  * @author vtacius
  */
-namespace ldapLogin;
+namespace LdapAS;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;

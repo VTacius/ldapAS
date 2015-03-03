@@ -3,7 +3,7 @@
  * @name ldapListener
  * @author vtacius
  */
-namespace ldapLogin;
+namespace LdapAS;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;

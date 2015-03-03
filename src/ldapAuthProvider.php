@@ -3,7 +3,7 @@
  * @name ldapAuthProvider
  * @author vtacius
  */
-namespace ldapLogin;
+namespace LdapAS;
 
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;

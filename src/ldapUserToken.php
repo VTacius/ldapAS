@@ -3,7 +3,7 @@
  * @name UsernamePasswordToken
  * @author vtacius
  */
-namespace ldapLogin;
+namespace LdapAS;
 
 use Symfony\Component\Security\Core\Authentication\Token\AbstractToken;
 use \Symfony\Component\Security\Core\Role\RoleInterface;

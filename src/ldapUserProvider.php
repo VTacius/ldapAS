@@ -3,7 +3,7 @@
  * @name ldapUserProvider
  * @author vtacius
  */
-namespace ldapLogin;
+namespace LdapAS;
 
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -11,8 +11,7 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Doctrine\DBAL\Connection;
 
-use ldapLogin\ldapUser;
-
+use LdapAS\ldapUser;
 use LdapPM\Modelos\modeloShadowAccount;
 
 

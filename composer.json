@@ -9,7 +9,7 @@
 	"vtacius/ldappm": "dev-master"
     },
     "autoload": {
-        "psr-0": { "VTacius\\ldapAS\\": "src/" }
+        "psr-0": { "VTacius\\LdapAS\\": "src/" }
     },
     "authors": [
         {
