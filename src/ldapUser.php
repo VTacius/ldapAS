@@ -70,4 +70,8 @@ class ldapUser implements UserInterface, EquatableInterface {
         }
         return true;
     }
+    
+    public function __toString() {
+        return $this->username;
+    }
 }

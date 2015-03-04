@@ -16,8 +16,8 @@ use LdapPM\Modelos\modeloShadowAccount;
 
 
 /**
- * Tenemos algo sin sentido que sin embargo funciona en determinados casos. Al menos, esto nos ayuda 
- * en cuanto a lo que tenemos que hacer
+ * Soy sincero con respecto al hecho que no entiendo del todo el flujo de todo este proceso
+ * sin embargo, al momemto de escribir esto, incluso los roles funcionan
  */
 class ldapUserProvider implements UserProviderInterface {
     
@@ -27,12 +27,11 @@ class ldapUserProvider implements UserProviderInterface {
     public function __construct(Connection $db, \Silex\Application $app) {
         $this->app = $app;
         $this->db = $db;
-	$class = get_class($this);
-        $this->app['monolog']->addInfo("Esto en ldapUserProvider personalizado $class");
     }
 
     public function loadUserByUsername($username) {
-        $ldap = new modeloShadowAccount('default', 'admin');
+        $ldap = new modeloShadowAccount($this->app['LdapAS.fichero']);
+        $ldap->conectar('default', 'admin');
         $ldap->setUid($username);
         if (!$ldap->verificaExistencia()) {
             throw new UsernameNotFoundException(sprintf('El usuario %s no existe', $username));
@@ -44,19 +43,20 @@ class ldapUserProvider implements UserProviderInterface {
         $credenciales = "Falsedad, no necesito en realidad este parametro";
         return new ldapUser($username, $credenciales, explode(',', $rol), $dominio, $dnUser);
     }
-
+    
     public function refreshUser(UserInterface $user) {
-        $this->app['monolog']->addInfo("Esto en refreshUser de ldapUserProvider personalizado");
-        if (!$user instanceof ldapLogin\ldapUserProvider) {
-            $this->app['monolog']->addInfo("Suponenemos que este es el problema");
-            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', get_class($user)));
+    // TODO: Tampoco esta función tiene mucho sentido a estas alturas de la vida
+        $class = get_class($user);
+        if (!$this->supportsClass($class)) {
+            throw new UnsupportedUserException(sprintf('Instancias de clase "%s" no son soportadas.', get_class($user)));
         }
         return $this->loadUserByUsername($user->getUsername());
     }
 
     public function supportsClass($class) {
-        $this->app['monolog']->addInfo("Esto en supportsClass de ldapUserProvider personalizado $class");
-        return $class === 'ldapLogin\ldapUser';
+        // TODO: A estas alturas del partido, siguen sin entender del todo que pinta este dentro del proceso, ya que de todos modos
+        // resultaba en falso al punto de escribir esto
+        return $class === 'LdapAS\ldapUser';
     }
     
     /**

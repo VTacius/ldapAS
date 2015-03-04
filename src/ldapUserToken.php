@@ -1,15 +1,14 @@
 <?php
 /**
- * @name UsernamePasswordToken
+ * @name ldapUserToken
  * @author vtacius
  */
 namespace LdapAS;
 
 use Symfony\Component\Security\Core\Authentication\Token\AbstractToken;
 use \Symfony\Component\Security\Core\Role\RoleInterface;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-class UsernamePasswordToken extends AbstractToken {
+class ldapUserToken extends AbstractToken {
     private $user;
     private $credentials;
     private $roles = array();

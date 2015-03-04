@@ -4,9 +4,9 @@
     "license": "MIT",
     "keywords": ["LDAP", "Silex"],
     "require": {
-	"doctrine/dbal": "~2.5",
+	    "doctrine/dbal": "~2.5",
         "symfony/yaml": "~2.5.5",
-	"vtacius/ldappm": "dev-master"
+	    "vtacius/ldappm": "dev-master"
     },
     "autoload": {
         "psr-4": { "LdapAS\\": "src/" }
