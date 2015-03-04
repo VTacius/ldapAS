@@ -56,7 +56,7 @@ class ldapUser implements UserInterface, EquatableInterface {
     }
     
     public function isEqualTo(UserInterface $user) {
-        if (!$user instanceof ldapLogin\ldapUser) {
+        if (!$user instanceof LdapAS\ldapUser) {
             return false;
         }
         if ($this->password !== $user->getPassword()) {

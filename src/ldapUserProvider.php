@@ -36,12 +36,12 @@ class ldapUserProvider implements UserProviderInterface {
         if (!$ldap->verificaExistencia()) {
             throw new UsernameNotFoundException(sprintf('El usuario %s no existe', $username));
         }        
-        $atributos = $this->obtenerRol($username);
-        $rol = $atributos['rol'];
-        $dnUser =  $ldap->getDnObjeto();
-        $dominio =$this->obtenerDominio($dnUser, $atributos['dominio']);
+        $attr = $this->obtenerRol($username);
+        $roles = $attr['rol'];
+        $dnUser = $ldap->getDnObjeto();
+        $dominio = $this->obtenerDominio($dnUser, $attr['dominio']);
         $credenciales = "Falsedad, no necesito en realidad este parametro";
-        return new ldapUser($username, $credenciales, explode(',', $rol), $dominio, $dnUser);
+        return new ldapUser($username, $credenciales, explode(',', $roles), $dominio, $dnUser);
     }
     
     public function refreshUser(UserInterface $user) {
@@ -101,11 +101,9 @@ class ldapUserProvider implements UserProviderInterface {
         $params = array('arguser'=>$usuario);
         $query = $this->db->executeQuery($sentencia, $params);
         if (($user = $query->fetch())) {
-#            $this->app['monolog']->addInfo('Este rol le asignaremos al usuario '. $user['rol']);
             return $user;
         } else {
             //Se asigna un rol por defecto
-#            $this->app['monolog']->addInfo("Algo ha fallado con obtenerRol. Obtenemos valores por defecto");
             return array('rol'=>'ROL_USER', 'dominio'=>'');
         }
     }

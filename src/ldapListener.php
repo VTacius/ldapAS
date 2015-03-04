@@ -44,7 +44,7 @@ class ldapListener implements ListenerInterface{
         // TODO: He supuesto que esta especie de pre-token no sobrevive por mucho, ya que no se ve con rol 'administrador'
         // que por cierto es un rol inválido, en el resto del flujo
         $token = new UsernamePasswordToken($usuario, $password, array('admininistrador'));
-        $token->setUser($usuario);
+//        $token->setUser($usuario);
         
         try {
             // Autentico el token

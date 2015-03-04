@@ -46,20 +46,19 @@ class ldapAuthProvider implements AuthenticationProviderInterface{
     public function authenticate(TokenInterface $token) {
         // TODO: La carga de este usuario debe suceder donde nuestro proveedor de usuarios, cosa que pasa por el momento
         // pero que tiene mucho trabajo por afinar
-        $user = $this->userProvider->loadUserByUsername($token->getUsername());
+        $usuario = $this->userProvider->loadUserByUsername($token->getUsername());
         $credenciales = $token->getCredentials();
         if ($this->logueo($token->getUsername(), $credenciales)) {
             # La autenticacion es un éxito. Creamos un token autenticado
-            $authenticatedToken = new UsernamePasswordToken($user->getUsername(), $user->getPassword(), 'LdapAS', $user->getRoles());
+            $authenticatedToken = new UsernamePasswordToken($usuario->getUsername(), $credenciales, 'LdapAS', $usuario->getRoles());
             // A continuación, llenamos el token con información sobre el usuario:
             // Resulta que en lugar de $user->getUsername debería ser $user, para mandar todo el objeto a 
             // guardarse en el token, 
             // TODO: Por el momento no encuentro la manera de registrar la
             // clase ldapUser como un ¿Proveedor valido?
-            $authenticatedToken->setUser($user);
-            $authenticatedToken->setAttribute('dn',$user->getDnUser());
+            $authenticatedToken->setAttribute('dnUser',$usuario->getDnUser());
             $authenticatedToken->setAttribute('credencial', $credenciales);
-            $authenticatedToken->setAttribute('dominio', $user->getDominio());
+            $authenticatedToken->setAttribute('dominio', $usuario->getDominio());
             return $authenticatedToken;
         } else {
             throw new AuthenticationException('La autenticacion contra LDAP ha fallado');
